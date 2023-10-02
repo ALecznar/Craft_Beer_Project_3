@@ -1,5 +1,5 @@
 // Margin around the graph
-var margin = {top: 20, right: 20, bottom: 70, left: 40},
+var margin = {top: 80, right: 40, bottom: 70, left: 60},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -81,7 +81,8 @@ d3.json("michigan_sorted.json").then(function(data) {
        .attr("x",0 - (height / 2))
        .attr("dy", "1em")
        .style("text-anchor", "middle")
-       .text("# Of Breweries");
+       .style("text-anchor", "middle")
+       .text("Number Of Breweries");
 
 
 
@@ -94,12 +95,14 @@ d3.json("michigan_sorted.json").then(function(data) {
        .attr("x", d => xScale(d.key))
        .attr("width", xScale.bandwidth())
        .attr("y", d => yScale(d.value))
+       .style("fill", "#69B3A2")
        .attr("height", d => height - yScale(d.value));
 
     // Add x-axis label
     svg.append("text")
-       .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + 30) + ")")
+       .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.bottom - 30) + ")")
        .style("text-anchor", "middle")
+       .style("font-weight", "bold")
        .text("City");
 
 });

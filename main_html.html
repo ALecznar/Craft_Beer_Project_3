@@ -1,88 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Michigan Breweries/Beers</title>
-
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-
     <!-- Your CSS -->
     <link rel="stylesheet" type="text/css" href="main_css.css">
 </head>
-
 <body>
-
     <header>
         <h1>Michigan Breweries/Beers</h1>
     </header>
-
     <!-- The div that holds our map -->
     <div id="map"></div>
-
     <!-- chart -->
     <div id="chartContainer" style="min-height:700px;"></div>
-
     <!--#######################################
-
     <!> Dropdown Section -->
     <div class="container">
         <h1 class="title">Dropdown Menu</h1>
         <ul>
             <li class="dropdown">
-                <a href="#" data-toggle="dropdown">First Menu <i class="icon-arrow"></i></a>
+                <a href="#" data-toggle="dropdown">Cities <i class="icon-arrow"></i></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <p>
+                        Select City: <select id="dropdown1"></select>
+                    </p>  
+                    <p>
+                        Brewery Name: <select id="breweryname"></select>
+                    </p>
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#" data-toggle="dropdown">Second Menu <i class="icon-arrow"></i></a>
+                <a href="#" data-toggle="dropdown"> Craft Beers <i class="icon-arrow"></i></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <select id="dropdown2"></select>
                 </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" data-toggle="dropdown">Third Menu <i class="icon-arrow"></i></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </li>
         </ul>
         <p class="text-center">
             See this same menu only with CSS3: <a href="https://codepen.io/pedronauck/pen/jaluz" target="_blank">https://codepen.io/pedronauck/pen/jaluz</a>
         </p>
     </div>
-
-
 <!--####################################### -->
-
-
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <!-- D3 JavaScript -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <!-- Your JavaScript -->
     <script type="text/javascript" src="main_js.js"></script>
-
     <!-- ########################  -->
-
     <script type="text/javascript" src="drop_down_js.js"></script>
-
-
     <!-- ########################  -->
-
 </body>
-
 </html>
