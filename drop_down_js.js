@@ -1,76 +1,80 @@
 // Dropdown Menu
 document.addEventListener("DOMContentLoaded", function () {
-	
-		fetch("michigan_sorted.json")
-			.then(response => response.json())
-			.then(data => {
-					const dropdown1 = document.getElementById("dropdown1");
-	
-				// Iterate through each item in the JSON data
-				for (const item of data) {
-					// Create an option element and set its text and value
-					const option = document.createElement("option");
-					option.textContent = item.city; // You can change this to the field you want as the displayed text
-					option.value = item.name; // You can change this to the field you want as the value
-					dropdown1.appendChild(option);
-					const option2 = document.createElement("option");
-					option2.value = item.name;
-					option2.textContent = item.name;
-					dropdown1.appendChild(option2);
-				} 
-			})
-			.catch(error => console.error("Error loading data from data1.json:", error));
-	
-		fetch("beer_ratings_clean.json")
-			.then(response => response.json())
-			.then(data => {
-				const dropdown2 = document.getElementById("dropdown2");
-				// Iterate through each item in the JSON data
-				for (const item of data) {
-					// Create an option element and set its text and value
-					const option = document.createElement("option");
-					option.value = item.Beer; // You can change this to the field you want as the value
-					option.textContent = item.Beer; // You can change this to the field you want as the displayed text
-					dropdown2.appendChild(option);
-				}
-			})
-			.catch(error => console.error("Error loading data from data2.json:", error));
-	
-	var dropdown = document.querySelectorAll('.dropdown');
-	var dropdownArray = Array.prototype.slice.call(dropdown,0);
-	dropdownArray.forEach(function(el){
-		var button = el.querySelector('a[data-toggle="dropdown"]'),
-				menu = el.querySelector('.dropdown-menu'),
-				arrow = button.querySelector('i.icon-arrow');
-	
-		button.onclick = function(event) {
-			if(!menu.hasClass('show')) {
-				menu.classList.add('show');
-				menu.classList.remove('hide');
-				arrow.classList.add('open');
-				arrow.classList.remove('close');
-				event.preventDefault();
-			}
-			else {
-				menu.classList.remove('show');
-				menu.classList.add('hide');
-				arrow.classList.remove('open');
-				arrow.classList.add('close');
-				event.preventDefault();
-			}
-		};
-	})
-	
-	Element.prototype.hasClass = function(className) {
-		return this.className && new RegExp("(^|\\s)" + className + "(\\s|$)").test(this.className);
-	};
-	
-	});
-	
+    fetch("michigan_sorted.json")
+        .then(response => response.json())
+        .then(data => {
+            const dropdownCities = document.getElementById("dropdownCities");
+            const dropdownBreweries = document.getElementById("dropdownBreweries");
 
-	
-	
-	
+            // Create a Set to store unique cities
+            const uniqueCities = new Set(data.map(item => item.city));
+
+            // Sort the cities alphabetically
+            const sortedCities = Array.from(uniqueCities).sort();
+
+            // Populate the Cities dropdown
+            for (const city of sortedCities) {
+                const optionCity = document.createElement("option");
+                optionCity.value = city;
+                optionCity.textContent = city;
+                dropdownCities.appendChild(optionCity);
+            }
+
+            // Handle City dropdown change event
+            dropdownCities.addEventListener("change", function () {
+                const selectedCity = this.value;
+
+                // Clear existing options in Breweries dropdown
+                dropdownBreweries.innerHTML = "";
+
+                // Filter data for selected city
+                const breweriesInCity = data.filter(item => item.city === selectedCity);
+
+                // Create an array of brewery names in the selected city
+                const breweryNames = breweriesInCity.map(item => item.name);
+
+                // Sort the brewery names alphabetically
+                breweryNames.sort();
+
+                // Populate the Breweries dropdown based on the selected city
+                for (const breweryName of breweryNames) {
+                    const optionBrewery = document.createElement("option");
+                    optionBrewery.value = breweryName;
+                    optionBrewery.textContent = breweryName;
+                    dropdownBreweries.appendChild(optionBrewery);
+                }
+            });
+        })
+        .catch(error => console.error("Error loading data from michigan_sorted.json:", error));
+
+    var dropdown = document.querySelectorAll('.dropdown');
+    var dropdownArray = Array.prototype.slice.call(dropdown, 0);
+    dropdownArray.forEach(function (el) {
+        var button = el.querySelector('a[data-toggle="dropdown"]'),
+            menu = el.querySelector('.dropdown-menu'),
+            arrow = button.querySelector('i.icon-arrow');
+
+        button.onclick = function (event) {
+            if (!menu.classList.contains('show')) {
+                menu.classList.add('show');
+                menu.classList.remove('hide');
+                arrow.classList.add('open');
+                arrow.classList.remove('close');
+                event.preventDefault();
+            } else {
+                menu.classList.remove('show');
+                menu.classList.add('hide');
+                arrow.classList.remove('open');
+                arrow.classList.add('close');
+                event.preventDefault();
+            }
+        };
+    });
+
+    Element.prototype.hasClass = function (className) {
+        return this.className && new RegExp("(^|\\s)" + className + "(\\s|$)").test(this.className);
+    };
+});
 	
 	
 	
