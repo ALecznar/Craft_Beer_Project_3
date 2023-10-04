@@ -21,6 +21,31 @@ document.addEventListener("DOMContentLoaded", function () {
                 dropdownCities.appendChild(optionCity);
             }
 
+            // Handle City dropdown change event
+            dropdownCities.addEventListener("change", function () {
+                const selectedCity = this.value;
+
+                // Clear existing options in Breweries dropdown
+                dropdownBreweries.innerHTML = "";
+
+                // Filter data for selected city
+                const breweriesInCity = data.filter(item => item.city === selectedCity);
+
+                // Create a Set to store unique brewery names in the selected city
+                const uniqueBreweries = new Set(breweriesInCity.map(item => item.name));
+
+                // Sort the brewery names alphabetically
+                const sortedBreweries = Array.from(uniqueBreweries).sort();
+
+                // Populate the Breweries dropdown based on the selected city
+                for (const breweryName of sortedBreweries) {
+                    const optionBrewery = document.createElement("option");
+                    optionBrewery.value = breweryName;
+                    optionBrewery.textContent = breweryName;
+                    dropdownBreweries.appendChild(optionBrewery);
+                }
+            });
+
             // Fetch data for the Top 100 Beers dropdown from beer_ratings_clean.json
             fetch("beer_ratings_clean.json")
                 .then(response => response.json())
@@ -128,3 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     });
 });
+	
+	
+	
+	
