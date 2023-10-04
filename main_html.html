@@ -1,38 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Michigan Breweries/Beers</title> 
-
+    <title>Michigan Breweries/Beers</title>
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-
     <!-- Your CSS -->
     <link rel="stylesheet" type="text/css" href="main_css.css">
 </head>
-
 <body>
-
     <header>
         <h1>Michigan Breweries/Beers</h1> 
         <img class="logo" src="beer.png" alt="beer-logo"> 
         <img class="logo2" src="beer.png" alt="beer-logo">
     </header>
-
     <!-- The div that holds our map -->
     <div id="map"></div>
-
     <!-- chart -->
     <div id="chartContainer" style="min-height:600px;"></div>
 
     <!-- chart 2-->
     <div id = "top-ten-beers"></div>
-
     <!--#######################################
-
     <!> Dropdown Section -->
     <div class="container">
         <h1 class="title">Dropdown Menu</h1>
@@ -41,25 +32,36 @@
                 <a href="#" data-toggle="dropdown">Cities <i class="icon-arrow"></i></a>
                 <ul class="dropdown-menu">
                     <p>
-                        Select City: <select id="dropdown1"></select>
-                    </p>  
+                        Select City:
+                        <select id="dropdownCities"></select>
+                    </p>
                     <p>
-                        Brewery Name: <select id="breweryname"></select>
+                        Breweries in City:
+                        <select id="dropdownBreweries"></select>
                     </p>
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#" data-toggle="dropdown"> Craft Beers <i class="icon-arrow"></i></a>
+                <a href="#" data-toggle="dropdown">Top 100 Beers <i class="icon-arrow"></i></a>
                 <ul class="dropdown-menu">
-                    <select id="dropdown2"></select>
+                    <p>
+                        Select Beer Type: <!-- New dropdown for beer types -->
+                        <select id="dropdownBeerTypes"></select>
+                    </p>
+                    <p>
+                        Select Beer:
+                        <select id="dropdownBeers"></select>
+                    </p>
                 </ul>
         </ul>
-    </div>
-
-
+    </div> 
 <!--####################################### -->
-
-
+  <div id="beerInfoDisplay">
+    <h2>Beer Information</h2>
+    <div id="beerInfo">
+        <!-- The selected beer's information will be displayed here -->
+    </div>
+</div>
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <!-- D3 JavaScript -->
@@ -78,14 +80,8 @@
 
 
     </script>
-
     <!-- ########################  -->
-
     <script type="text/javascript" src="drop_down_js.js"></script>
-
-
     <!-- ########################  -->
-
 </body>
-
 </html>

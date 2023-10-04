@@ -88,6 +88,7 @@ d3.json("michigan_sorted.json").then(function(data) {
        .attr("dy", "1em")
        .style("text-anchor", "middle")
        .style("font-weight", "bold")
+       .style("text-anchor", "middle")
        .text("Number Of Breweries");
 
 
