@@ -128,7 +128,3 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     });
 });
-	
-	
-	
-	

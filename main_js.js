@@ -1,5 +1,5 @@
 // Margin around the graph
-var margin = {top: 80, right: 40, bottom: 70, left: 60},
+var margin = {top: 80, right: 50, bottom: 70, left: 100},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -70,17 +70,24 @@ d3.json("michigan_sorted.json").then(function(data) {
     // Append the axes
     svg.append("g")
        .attr("transform", "translate(0," + height + ")")
-       .call(d3.axisBottom(xScale));
+       .call(d3.axisBottom(xScale))
+       .style("font-size", "13px")
+       .selectAll("path")
+       .style("stroke-width", "1.75px");
 
     svg.append("g")
-       .call(d3.axisLeft(yScale));
+       .call(d3.axisLeft(yScale))
+       .style("font-size", "13px")
+       .selectAll("path")
+       .style("stroke-width", "1.75px");
 
     svg.append("text")
        .attr("transform", "rotate(-90)")
-       .attr("y", 0 - margin.left)
+       .attr("y", 35 - margin.left)
        .attr("x",0 - (height / 2))
        .attr("dy", "1em")
        .style("text-anchor", "middle")
+       .style("font-weight", "bold")
        .style("text-anchor", "middle")
        .text("Number Of Breweries");
 
@@ -95,7 +102,7 @@ d3.json("michigan_sorted.json").then(function(data) {
        .attr("x", d => xScale(d.key))
        .attr("width", xScale.bandwidth())
        .attr("y", d => yScale(d.value))
-       .style("fill", "#69B3A2")
+       .style("fill", "#69b3a2")
        .attr("height", d => height - yScale(d.value));
 
     // Add x-axis label
@@ -104,5 +111,105 @@ d3.json("michigan_sorted.json").then(function(data) {
        .style("text-anchor", "middle")
        .style("font-weight", "bold")
        .text("City");
+
+});
+
+d3.json('beer_ratings_clean.json').then(function(data) {
+    
+let items = data.sort((a, b) => parseFloat(b["Average Rating"]) - parseFloat(a["Average Rating"]));
+const slicedarray = items.slice(0,10); 
+console.log(slicedarray);
+
+//chart 2 margins
+const margin2 = {top:40, right: 50, bottom: 50, left: 300}
+const width2 = 900 - margin2.left - margin2.right
+const height2 = 500- margin2.top - margin2.bottom
+
+
+//container for the chart
+const svg = d3.select('#top-ten-beers').append('svg')
+    .attr("width", width2 + margin2.left + margin2.right)
+    .attr("height", height2 + margin2.top + margin2.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
+
+//text title
+    svg.append("text")
+    .attr("x", width2 / 2)
+    .attr("y", 0 - (margin2.top / 2))
+    .attr("text-anchor", "middle")
+    .style("font-size", "24px")
+    .style("text-decoration", "underline")
+    .text("Top Ten Beers in Michigan");
+
+
+
+// Set the scales
+var yScale = d3.scaleBand()
+       .domain(slicedarray.map(d => d.Beer))
+       .range([0, height2])
+       .padding(0.4);
+
+var xScale = d3.scaleLinear()
+    .range([0, width2])
+    .domain([0, d3.max(slicedarray, function(d) { return d["Average Rating"]; })]);
+       
+//create x and y axis
+var x = d3.axisBottom(xScale);
+var y = d3.axisLeft(yScale)
+    .tickPadding(10);
+
+//create the bars for the chart
+svg.selectAll(".bar")
+    .data(slicedarray)
+    .enter().append("rect")
+    .attr("class", "bar")
+    .attr("width", d => xScale(d["Average Rating"]))
+    .attr("y", d => yScale(d.Beer))
+    .attr("height", yScale.bandwidth())
+    .style("fill", "skyblue")
+
+// Append the axes
+svg.append("g")
+    .attr("class", "x")
+    .attr("transform", "translate(0," + height2 + ")")
+    .call(x)
+    .style("font-size", "13px")
+    .selectAll("path")
+    .style("stroke-width", "1.75px");
+
+svg.append("g")
+    .style("font-size", "13px")
+    .style("stroke-width", "1.75px")
+    .call(y);
+
+//add bar labels
+svg.selectAll(".label")
+    .data(slicedarray)
+    .enter().append("text")
+    .attr("x", d => xScale(d["Average Rating"]))
+    .attr("y", d => yScale(d.Beer))
+    .attr("dy", "1.45em")
+    .style("font-family", "sans-serif")
+    .style("font-size", "12px")
+    .style("font-weight", "bold")
+    .text(function(d) { return d["Average Rating"]})
+    
+//Add x axis label
+svg.append("text")
+.attr("transform", "translate(" + (width2 / 2) + " ," + (height2 + margin2.bottom - 10) + ")")
+.style("text-anchor", "middle")
+.style("font-weight", "bold")
+.text("Average Rating");
+
+//add y axis label
+svg.append("text")
+       .attr("transform", "rotate(-90)")
+       .attr("y", 10 - margin2.left)
+       .attr("x",0 - (height2 / 2))
+       .attr("dy", "1em")
+       .style("text-anchor", "middle")
+       .style("font-weight", "bold")
+       .text("Beer Name");
 
 });
