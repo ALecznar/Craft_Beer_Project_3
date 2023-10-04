@@ -1,10 +1,11 @@
-// Dropdown Menu
 document.addEventListener("DOMContentLoaded", function () {
     fetch("michigan_sorted.json")
         .then(response => response.json())
         .then(data => {
             const dropdownCities = document.getElementById("dropdownCities");
             const dropdownBreweries = document.getElementById("dropdownBreweries");
+            const dropdownBeers = document.getElementById("dropdownBeers");
+            const dropdownBeerTypes = document.getElementById("dropdownBeerTypes");
 
             // Create a Set to store unique cities
             const uniqueCities = new Set(data.map(item => item.city));
@@ -20,30 +21,86 @@ document.addEventListener("DOMContentLoaded", function () {
                 dropdownCities.appendChild(optionCity);
             }
 
-            // Handle City dropdown change event
-            dropdownCities.addEventListener("change", function () {
-                const selectedCity = this.value;
+            // Fetch data for the Top 100 Beers dropdown from beer_ratings_clean.json
+            fetch("beer_ratings_clean.json")
+                .then(response => response.json())
+                .then(beerData => {
+                    // Assuming beerData is an array of beer objects
 
-                // Clear existing options in Breweries dropdown
-                dropdownBreweries.innerHTML = "";
+                    // Create a Set to store unique beer types
+                    const uniqueBeerTypes = new Set(beerData.map(beer => beer["Beer Type"]));
 
-                // Filter data for selected city
-                const breweriesInCity = data.filter(item => item.city === selectedCity);
+                    // Sort the unique beer types alphabetically
+                    const sortedBeerTypes = Array.from(uniqueBeerTypes).sort();
 
-                // Create an array of brewery names in the selected city
-                const breweryNames = breweriesInCity.map(item => item.name);
+                    // Populate the Beer Types dropdown
+                    for (const beerType of sortedBeerTypes) {
+                        const optionBeerType = document.createElement("option");
+                        optionBeerType.value = beerType;
+                        optionBeerType.textContent = beerType;
+                        dropdownBeerTypes.appendChild(optionBeerType);
+                    }
 
-                // Sort the brewery names alphabetically
-                breweryNames.sort();
+                    // Handle Beer Type dropdown change event
+                    dropdownBeerTypes.addEventListener("change", function () {
+                        const selectedBeerType = this.value;
+                        populateBeersDropdown(selectedBeerType);
+                    });
 
-                // Populate the Breweries dropdown based on the selected city
-                for (const breweryName of breweryNames) {
-                    const optionBrewery = document.createElement("option");
-                    optionBrewery.value = breweryName;
-                    optionBrewery.textContent = breweryName;
-                    dropdownBreweries.appendChild(optionBrewery);
-                }
-            });
+                    // Rest of the code remains the same...
+
+                    function populateBeersDropdown(selectedBeerType) {
+                        // Clear existing options in the Beers dropdown
+                        dropdownBeers.innerHTML = "";
+
+                        // Filter beer names based on the selected beer type
+                        const beerNamesByType = beerData
+                            .filter(beer => beer["Beer Type"] === selectedBeerType)
+                            .map(beer => beer.Beer); // Extract beer names
+
+                        // Sort the beer names alphabetically
+                        beerNamesByType.sort();
+
+                        // Populate the Beers dropdown with filtered options
+                        for (const beerName of beerNamesByType) {
+                            const optionBeer = document.createElement("option");
+                            optionBeer.value = beerName;
+                            optionBeer.textContent = beerName;
+                            dropdownBeers.appendChild(optionBeer);
+                        }
+                    }
+
+                    // Handle Beer dropdown change event
+                    dropdownBeers.addEventListener("change", function () {
+                        const selectedBeer = this.value;
+
+                        // Find the selected beer object in beerData
+                        const selectedBeerData = beerData.find(beer => beer.Beer === selectedBeer);
+
+                        // Get the beerInfoDisplay element
+                        const beerInfoDisplay = document.getElementById("beerInfoDisplay");
+
+                        // Display the selected beer's data
+                        if (selectedBeerData) {
+                            // Create HTML markup to display the beer information
+                            const beerInfoHTML = `
+                                <p><strong>Beer:</strong> ${selectedBeerData.Beer}</p>
+                                <p><strong>Brewery:</strong> ${selectedBeerData.Brewery}</p>
+                                <p><strong>Beer Type:</strong> ${selectedBeerData["Beer Type"]}</p>
+                                <p><strong>ABV %:</strong> ${selectedBeerData["ABV %"]}</p>
+                                <p><strong>Total Ratings:</strong> ${selectedBeerData["Total Ratings"]}</p>
+                                <p><strong>Average Rating:</strong> ${selectedBeerData["Average Rating"]}</p>
+                            `;
+
+                            // Update the beerInfoDisplay element with the beer information
+                            beerInfoDisplay.innerHTML = beerInfoHTML;
+                        } else {
+                            // If the selected beer is not found, clear the display
+                            beerInfoDisplay.innerHTML = "";
+                        }
+                    });
+                })
+                .catch(error => console.error("Error loading data from beer_ratings_clean.json:", error));
         })
         .catch(error => console.error("Error loading data from michigan_sorted.json:", error));
 
@@ -70,10 +127,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         };
     });
-
-    Element.prototype.hasClass = function (className) {
-        return this.className && new RegExp("(^|\\s)" + className + "(\\s|$)").test(this.className);
-    };
 });
 	
 	

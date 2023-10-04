@@ -49,18 +49,26 @@
                 <a href="#" data-toggle="dropdown">Top 100 Beers <i class="icon-arrow"></i></a>
                 <ul class="dropdown-menu">
                     <p>
-                        Select Beer:
-                        <select id="dropdownCities"></select>
+                        Select Beer Type: <!-- New dropdown for beer types -->
+                        <select id="dropdownBeerTypes"></select>
                     </p>
-                  
+                    <p>
+                        Select Beer:
+                        <select id="dropdownBeers"></select>
+                    </p>
                 </ul>
             </li>
         </ul>
-    </div>    
+    </div>  
 ​
 ​
 <!--####################################### -->
-​
+​    <div id="beerInfoDisplay">
+    <h2>Beer Information</h2>
+    <div id="beerInfo">
+        <!-- The selected beer's information will be displayed here -->
+    </div>
+</div>
 ​
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
