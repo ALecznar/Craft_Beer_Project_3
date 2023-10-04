@@ -5,31 +5,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Beer</title>
+    <title>Michigan Breweries/Beers</title> 
 
     <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-        crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
     <!-- Your CSS -->
     <link rel="stylesheet" type="text/css" href="main_css.css">
-
 </head>
 
 <body>
 
+    <header>
+        <h1>Michigan Breweries/Beers</h1> 
+        <img class="logo" src="beer.png" alt="beer-logo"> 
+        <img class="logo2" src="beer.png" alt="beer-logo">
+    </header>
+
     <!-- The div that holds our map -->
     <div id="map"></div>
 
+    <!-- chart -->
+    <div id="chartContainer" style="min-height:600px;"></div>
+
+    <!-- chart 2-->
+    <div id = "top-ten-beers"></div>
+
+    <!--#######################################
+
+    <!> Dropdown Section -->
+    <div class="container">
+        <h1 class="title">Dropdown Menu</h1>
+        <ul>
+            <li class="dropdown">
+                <a href="#" data-toggle="dropdown">Cities <i class="icon-arrow"></i></a>
+                <ul class="dropdown-menu">
+                    <p>
+                        Select City: <select id="dropdown1"></select>
+                    </p>  
+                    <p>
+                        Brewery Name: <select id="breweryname"></select>
+                    </p>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" data-toggle="dropdown"> Craft Beers <i class="icon-arrow"></i></a>
+                <ul class="dropdown-menu">
+                    <select id="dropdown2"></select>
+                </ul>
+        </ul>
+    </div>
+
+
+<!--####################################### -->
+
+
     <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <!-- D3 JavaScript -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <!-- Your JavaScript -->
     <script type="text/javascript" src="main_js.js"></script>
+    
+    <!-- gsap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Flip.min.js"></script>"
+    <script>
+        gsap.from('div', {opacity: 0, duration: 1, y: -50})
+        gsap.from('.dropdown', {opacity: 0, duration: 1, y: -50, stagger:0.2})
+        gsap.to('.logo', {duration: 2, x: -100, ease: "back"});
+        gsap.to('.logo2', {transformOrigin: "50% 50%", duration: 2, x:100, ease: "back"});
+
+
+    </script>
+
+    <!-- ########################  -->
+
+    <script type="text/javascript" src="drop_down_js.js"></script>
+
+
+    <!-- ########################  -->
 
 </body>
 
