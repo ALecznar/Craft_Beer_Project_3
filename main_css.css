@@ -5,7 +5,7 @@ body {
 }
 
 header {
-    background-color: #7577e7;
+    background-color: #302e23;
     color: white;
     padding: 20px 0;
     text-align: center;
@@ -22,6 +22,14 @@ h1 {
     left:40%;
 }
 
+#beerInfoDisplay{
+  color: white;
+  position: absolute;
+  left:11%;
+  bottom: 10%;
+  top:78%;
+  
+}
 
 #map, 
 body, 
@@ -42,12 +50,13 @@ html {
 
 #chartContainer {
     position: relative;
-    top: 200px;
+    top: 400px;
+    color: white;
 }
 
 #top-ten-beers {
   position: relative;
-  top: 300px;
+  top: 400px;
   color: white;
 }
 
@@ -100,9 +109,9 @@ body {
 }
 
 .container {
-  position: relative;
-  left: 0px;
-  bottom: 1150px;
+  position: absolute;
+  left:35%;
+  bottom:15%;
   width: 450px;
   margin: 50px auto;
 }
@@ -119,15 +128,19 @@ body {
   font-size: 40px;
   text-align: center;
   line-height: 1.4;
-  color: #2980b9;
+  color: white;
   position: relative;
+  left:80px;
+}
+
+.dropdown p {
+  color:white;
 }
 
 .dropdown a {
     text-decoration: none;
   }
   .dropdown [data-toggle="dropdown"] {
-    position: relative;
     display: block;
     color: white;
     background: #2980b9;

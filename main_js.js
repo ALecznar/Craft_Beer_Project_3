@@ -53,7 +53,8 @@ d3.json("michigan_sorted.json").then(function(data) {
                 .attr("text-anchor", "middle")
                 .style("font-size", "24px")
                 .style("text-decoration", "underline")
-                .text("Michigan Top Ten");
+                .text("Michigan Top Ten")
+                .style("fill", "white");
 
 
 
@@ -89,7 +90,8 @@ d3.json("michigan_sorted.json").then(function(data) {
        .style("text-anchor", "middle")
        .style("font-weight", "bold")
        .style("text-anchor", "middle")
-       .text("Number Of Breweries");
+       .text("Number Of Breweries")
+       .style("fill", "white");
 
 
 
@@ -110,7 +112,8 @@ d3.json("michigan_sorted.json").then(function(data) {
        .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.bottom - 30) + ")")
        .style("text-anchor", "middle")
        .style("font-weight", "bold")
-       .text("City");
+       .text("City")
+       .style("fill", "white");
 
 });
 
@@ -140,7 +143,8 @@ const svg = d3.select('#top-ten-beers').append('svg')
     .attr("text-anchor", "middle")
     .style("font-size", "24px")
     .style("text-decoration", "underline")
-    .text("Top Ten Beers in Michigan");
+    .text("Top Ten Beers in Michigan")
+    .style("fill", "white");
 
 
 
@@ -194,13 +198,15 @@ svg.selectAll(".label")
     .style("font-size", "12px")
     .style("font-weight", "bold")
     .text(function(d) { return d["Average Rating"]})
+    .style("fill", "white");
     
 //Add x axis label
 svg.append("text")
 .attr("transform", "translate(" + (width2 / 2) + " ," + (height2 + margin2.bottom - 10) + ")")
 .style("text-anchor", "middle")
 .style("font-weight", "bold")
-.text("Average Rating");
+.text("Average Rating")
+.style("fill", "white");
 
 //add y axis label
 svg.append("text")
@@ -210,6 +216,7 @@ svg.append("text")
        .attr("dy", "1em")
        .style("text-anchor", "middle")
        .style("font-weight", "bold")
-       .text("Beer Name");
+       .text("Beer Name")
+       .style("fill", "white");
 
 });
