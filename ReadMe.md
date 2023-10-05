@@ -1,4 +1,5 @@
 # Craft Beers and Breweries
+
 Interactive dashboard for beer lovers to explore Michigan's wide range of breweries and beers.
 
 # Technologies:
