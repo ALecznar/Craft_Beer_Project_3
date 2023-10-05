@@ -12,9 +12,10 @@
 </head>
 <body>
     <header>
-        <h1>Michigan Breweries/Beers</h1> 
-        <img class="logo" src="beer.png" alt="beer-logo"> 
-        <img class="logo2" src="beer.png" alt="beer-logo">
+        <h1>Michigan Breweries/Beers 
+         <img class="logo" src="beer.png" alt="beer-logo"> 
+         <img class="logo2" src="beer.png" alt="beer-logo">
+        </h1>
     </header>
     <!-- The div that holds our map -->
     <div id="map"></div>
@@ -75,8 +76,10 @@
     <script>
         gsap.from('div', {opacity: 0, duration: 1, y: -50})
         gsap.from('.dropdown', {opacity: 0, duration: 1, y: -50, stagger:0.2})
-        gsap.to('.logo', {duration: 2, x: -100, ease: "back"});
-        gsap.to('.logo2', {transformOrigin: "50% 50%", duration: 2, x:100, ease: "back"});
+        gsap.to('.logo', {transformOrigin: "50% 50%", duration: 2, x: -100, ease: "back", rotation: -20});
+        gsap.to('.logo2', {transformOrigin: "50% 50%", duration: 2, x:100, ease: "back", rotation: "20"});
+    
+        
 
 
     </script>
