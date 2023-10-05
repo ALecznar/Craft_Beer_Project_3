@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     dropdownBreweries.appendChild(optionBrewery);
                 }
             });
+      
             // Fetch data for the Top 100 Beers dropdown from beer_ratings_clean.json
             fetch("beer_ratings_clean.json")
                 .then(response => response.json())
@@ -134,3 +135,4 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     });
 });
+
