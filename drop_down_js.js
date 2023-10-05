@@ -72,8 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         populateBeersDropdown(selectedBeerType);
                     });
 
-                    // Rest of the code remains the same...
-
                     function populateBeersDropdown(selectedBeerType) {
                         // Clear existing options in the Beers dropdown
                         dropdownBeers.innerHTML = "";
@@ -92,6 +90,15 @@ document.addEventListener("DOMContentLoaded", function () {
                             optionBeer.value = beerName;
                             optionBeer.textContent = beerName;
                             dropdownBeers.appendChild(optionBeer);
+                        }
+
+                        // Check if there's only one option available after filtering
+                        if (beerNamesByType.length === 1) {
+                            // Automatically select the only available beer
+                            dropdownBeers.value = beerNamesByType[0];
+                            // Trigger the change event manually
+                            const event = new Event("change");
+                            dropdownBeers.dispatchEvent(event);
                         }
                     }
 
@@ -153,7 +160,5 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     });
 });
-	
-	
 	
 	
