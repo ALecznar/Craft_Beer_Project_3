@@ -4,6 +4,26 @@ Interactive dashboard for beer lovers to explore Michigan's wide range of brewer
 
 ![image](https://github.com/ALecznar/Craft_Beer_Project_3/assets/130694752/49c2ed4e-ff62-4c73-9824-6914e394675e)
 
+# Resources
+
+The following resources were used to help us create our project.
+
+- GSAP javascript library: https://greensock.com/gsap/
+
+- Brewery data: https://www.openbrewerydb.org/documentation#metadata *Breweries API*
+
+- Beer data: https://www.beeradvocate.com/beer/top-rated/us/mi/ *Website Scraped for "Top 100 Beers" dropdown*
+
+
+  *We also recommend using the Live Server extension when exploring this repo via VSCode*
+
+- image used for background: https://wallpapercave.com/wp/wp3087049.jpg *image URL for background*
+
+- Dropdown menu: https://codepen.io/alvarotrigo/pen/mdxzvQR *Base template for Dropdown Menu*
+
+- Beer logo: https://www.youtube.com/watch?v=TkBrhzKmsNQ 
+
+
 
 # Technologies:
 
@@ -91,21 +111,4 @@ We used the javascript library gsap to animate our beer logo which was created w
 - Thom Banninga
 
 - Natalia Phipps
-
-# Resources
-
-The following resources were used to help us create our project.
-
- - Brewery data: https://www.openbrewerydb.org/documentation#metadata *Breweries API*
-
-- Beer data: https://www.beeradvocate.com/beer/top-rated/us/mi/ *Website Scraped for "Top 100 Beers" dropdown*
-
-
-  *We also recommend using the Live Server extension when exploring this repo via VSCode*
-
-- image used for background: https://wallpapercave.com/wp/wp3087049.jpg *image URL for background*
-
-- Dropdown menu: https://codepen.io/alvarotrigo/pen/mdxzvQR *Base template for Dropdown Menu*
-
-- Beer logo: https://www.youtube.com/watch?v=TkBrhzKmsNQ 
 
