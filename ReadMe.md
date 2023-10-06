@@ -100,6 +100,9 @@ The following resources were used to help us create our project.
 
 - Beer data: https://www.beeradvocate.com/beer/top-rated/us/mi/ *Website Scraped for "Top 100 Beers" dropdown*
 
+
+  *We also recommend using the Live Server extension when exploring this repo via VSCode*
+
 - image used for background: https://wallpapercave.com/wp/wp3087049.jpg *image URL for background*
 
 - Dropdown menu: https://codepen.io/alvarotrigo/pen/mdxzvQR *Base template for Dropdown Menu*
